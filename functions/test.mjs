@@ -24,6 +24,12 @@ export default async function (params, context) {
                 msg: 'success'
             };
         }
+        if (!context.query.name) {
+            return {
+                code: 1,
+                error: 'Missing required parameters'
+            }
+        }
 
         const result = await persons.where({ name: context.query.name }).find();
 
