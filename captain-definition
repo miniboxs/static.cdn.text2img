@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 2,
+  "dockerfileLines": [
+    "FROM node:lts-alpine3.20",
+    "WORKDIR /usr/src/app",
+    "COPY package.json /usr/src/app",
+    "RUN npm install -g pnpm",
+    "RUN pnpm install",
+    "COPY . .",
+    "EXPOSE 56557",
+    "CMD [ \"pnpm\", \"start\" ]"
+  ]
+}
