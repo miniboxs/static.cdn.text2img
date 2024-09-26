@@ -3,9 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "cross-env AC_FAAS_ROOT=functions AC_PORT=5173 run-aircode --init",
+    "start": "cross-env AC_FAAS_ROOT=functions AC_PORT=56554 run-aircode --init",
     "deploy": "cross-env AC_FAAS_ROOT=functions deploy-aircode",
-    "docker": "cross-env AC_FAAS_ROOT=functions AC_PORT=56554 run-aircode --init",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
