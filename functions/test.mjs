@@ -18,14 +18,14 @@ export default async function (params, context) {
                 name,
                 age
             });
-            console.log(r);
+
             return {
                 code: 0,
                 msg: 'success'
             };
         }
 
-        const result = await persons.where({ name:context.query.name }).find();
+        const result = await persons.where({ name: context.query.name }).find();
 
         return {
             code: 0,
