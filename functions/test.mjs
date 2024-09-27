@@ -1,9 +1,9 @@
 import aircode from 'aircode';
-// import cron from 'node-cron';
-
-const persons = aircode.db.table('persons');
 
 export default async function (params, context) {
+
+    const persons = aircode.db.table('persons');
+
     try {
         const { name, age } = params;
         if (context.method === 'POST') {
