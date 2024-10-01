@@ -3,6 +3,7 @@ import aircode from 'aircode';
 export default async function (params, context) {
 
     const persons = aircode.db.table('persons');
+    const files = aircode.db.table('_files');
 
     try {
         const { name, age } = params;
@@ -32,10 +33,11 @@ export default async function (params, context) {
         }
 
         const result = await persons.where({ name: context.query.name }).find();
-
+        const fileList = await files.where().find();
         return {
             code: 0,
-            result
+            result,
+            fileList
         };
     } catch (error) {
 

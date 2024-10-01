@@ -1,16 +1,35 @@
 import aircode from 'aircode';
 
 export default async function (params, context) {
+    try {
+        const page = context.query?.page || 1;
+        const size = context.query?.size || 10;
+        // const id = context.query.id || null;
 
-    // const { id } = params;
-    // const PersonsTable = aircode.db.table('persons');
+        const files = await aircode.db.table('_files').where()
+            .sort({ qty: -1 })  // sort by `qty` in desc order
+            .skip((page - 1) * size)
+            .limit(size)
+            .find();
+        const result = files.map((item) => {
+            return {
+                ...item,
+                url: item.url.replace("/.files/", "/files/")
+            }
+        });
+        // const content = await aircode.files.download({
+        //     // Replace the _id value with your file's
+        //     _id: context.query.id
+        // });
 
-    const content = await aircode.files.download({
-        // Replace the _id value with your file's
-        _id: context.query.id
-    });
+        return {
+            code: 0,
+            result,
+            total: files.length,
+            msg: "success"
+        }
 
-    // return the URL of file
-    return content;
+    } catch (error) {
 
+    }
 };
