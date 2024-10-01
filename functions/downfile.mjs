@@ -3,13 +3,13 @@ import aircode from 'aircode';
 export default async function (params, context) {
     try {
         const page = context.query?.page || 1;
-        const size = context.query?.size || 10;
+        const pageSize = context.query?.size || 10;
         // const id = context.query.id || null;
 
         const files = await aircode.db.table('_files').where()
             .sort({ qty: -1 })  // sort by `qty` in desc order
-            .skip((page - 1) * size)
-            .limit(size)
+            .skip((page - 1) * pageSize)
+            .limit(pageSize)
             .find();
         const result = files.map((item) => {
             return {
