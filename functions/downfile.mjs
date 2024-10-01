@@ -7,7 +7,7 @@ export default async function (params, context) {
         // const id = context.query.id || null;
 
         const files = await aircode.db.table('_files').where()
-            .sort({ qty: -1 })  // sort by `qty` in desc order
+            .sort({ updatedAt: -1 })  // sort by `qty` in desc order
             .skip((page - 1) * pageSize)
             .limit(+pageSize)
             .find();
@@ -17,7 +17,7 @@ export default async function (params, context) {
                 ...item,
                 url: item.url.replace("/.files/", "/files/")
             }
-        }).reverse();
+        });
         // const content = await aircode.files.download({
         //     // Replace the _id value with your file's
         //     _id: context.query.id
