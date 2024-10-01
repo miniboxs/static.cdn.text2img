@@ -2,8 +2,8 @@ import aircode from 'aircode';
 
 export default async function (params, context) {
     try {
-        const page = +context.query?.page || 1;
-        const pageSize = +context.query?.pageSize || 10;
+        const page = context.query?.page || 1;
+        const pageSize = context.query?.pageSize || 10;
         // const id = context.query.id || null;
 
         const files = await aircode.db.table('_files').where()
