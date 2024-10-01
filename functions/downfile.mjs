@@ -7,7 +7,7 @@ export default async function (params, context) {
         // const id = context.query.id || null;
 
         const files = await aircode.db.table('_files').where()
-            .sort({ qty: -1 })  // sort by `qty` in desc order
+            .sort({ field: "updatedAt", qty: -1 })  // sort by `qty` in desc order
             .skip((page - 1) * pageSize)
             .limit(+pageSize)
             .find();
